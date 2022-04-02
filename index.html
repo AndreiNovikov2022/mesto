@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="html, css">
+    <base href="./">
+    <link rel="stylesheet" type="text/css" href="./pages/index.css">
+    <title>Mesto Russia</title>
+</head>
+
+<body class="root">
+    <div class="page">
+        <header class="header">
+            <img src="./images/header/header-logo.png" alt="Логотип" class="header__logo">
+            <div class="header__line-pic">
+            </div>
+        </header>
+        <main>
+            <section class="profile">
+                <div class="profile__item">
+                    <img src="./images/profile/profile-image.png" alt="Фотография путешественника"
+                        class="profile__image">
+                </div>
+                <div class="profile__edit-add">
+                    <div class="profile__info">
+                        <div class="profile__title">
+                            <h1 class="profile__name">Жак-Ив Кусто</h1>
+                            <p class="profile__about-me">Исследователь океана</p>
+                        </div>
+                        <a class="edit-button">
+                            <img src="./images/profile/profile-pencil.png" alt="Кликабельная иконка в виде карандаша"
+                                class="edit-button__image">
+                            <div class="edit-button__square-pic"></div>
+                        </a>
+                    </div>
+                    <a class="add-button">
+                        <img src="./images/profile/profile-plus.png" alt="Кликабельная иконка в виде плюса"
+                            class="add-button__image">
+                        <div class="add-button__square-pic"></div>
+                    </a>
+                </div>
+            </section>
+            <section class="elements">
+                <ul class="element">
+                    <li class="element__item"><img src="./images/elements/kirill-pershin-1088404-unsplash.png"
+                            alt="Фотография Карачаевска" class="element__image">
+                    </li>
+                    <li class="element__name">
+                        <h2 class="element__title">Карачаевск</h2>
+                        <a class="element__link"><img src="./images/elements/like.png" alt="Иконка-лайк"
+                                class="element__like element__like_no-active"></a>
+                    </li>
+                </ul>
+                <ul class="element">
+                    <li class="element__item"><img src="./images/elements/kirill-pershin-1404681-unsplash.png"
+                            alt="Фотография Карачаевска" class="element__image">
+                    </li>
+                    <li class="element__name">
+                        <h2 class="element__title">Гора Эльбрус</h2>
+                        <a class="element__link"><img src="./images/elements/like.png" alt="Иконка-лайк"
+                                class="element__like element__like_no-active"></a>
+                    </li>
+                </ul>
+                <ul class="element">
+                    <li class="element__item"><img src="./images/elements/kirill-pershin-1556355-unsplash.png"
+                            alt="Фотография Карачаевска" class="element__image">
+                    </li>
+                    <li class="element__name">
+                        <h2 class="element__title">Домбай</h2>
+                        <a class="element__link"><img src="./images/elements/like.png" alt="Иконка-лайк"
+                                class="element__like element__like_no-active"></a>
+                    </li>
+                </ul>
+                <ul class="element">
+                    <li class="element__item"><img src="./images/elements/kirill-pershin-1404681-unsplash.png"
+                            alt="Фотография Карачаевска" class="element__image">
+                    </li>
+                    <li class="element__name">
+                        <h2 class="element__title">Гора Эльбрус</h2>
+                        <a class="element__link"><img src="./images/elements/like.png" alt="Иконка-лайк"
+                                class="element__like element__like_no-active"></a>
+                    </li>
+                </ul>
+                <ul class="element">
+                    <li class="element__item"><img src="./images/elements/kirill-pershin-1556355-unsplash.png"
+                            alt="Фотография Карачаевска" class="element__image">
+                    </li>
+                    <li class="element__name">
+                        <h2 class="element__title">Домбай</h2>
+                        <a class="element__link"><img src="./images/elements/like.png" alt="Иконка-лайк"
+                                class="element__like element__like_no-active"></a>
+                    </li>
+                </ul>
+                <ul class="element">
+                    <li class="element__item"><img src="./images/elements/kirill-pershin-1088404-unsplash.png"
+                            alt="Фотография Карачаевска" class="element__image">
+                    </li>
+                    <li class="element__name">
+                        <h2 class="element__title">Карачаево-Черкессия</h2>
+                        <a class="element__link"><img src="./images/elements/like.png" alt="Иконка-лайк"
+                                class="element__like element__like_no-active"></a>
+                    </li>
+                </ul>
+            </section>
+        </main>
+        <footer class="footer">
+            <p class="footer__copyright">© 2022 Mesto Russia</p>
+        </footer>
+        <div class="popup">
+            <div class="popup__container">
+                <button class="popup__close" type="button"></button>
+                <h3 class="popup__title">Редактировать профиль</h3>
+                <form class="form">
+                    <div class="form__fields">
+                        <input type="text" placeholder="Введите имя" class="form__text form__text_name">
+                        <input type="text" placeholder="Укажите профессию" class="form__text form__text_job">
+                    </div>
+                    <button type="submit" class="form__submit">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+.profile__item {
+    width: 120px;
+    height: 120px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+
+    .profile__item {
+        width: 282px;
+        height: 100%;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+
+    .profile__item {
+        width: calc(100% - (100px - 19px) * 2);
+        height: 100%;
+    }
+}

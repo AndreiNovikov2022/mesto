@@ -1,0 +1,22 @@
+.form__text {
+    padding: 13px 0 7px;
+    margin-bottom: 18px;
+    border: 0;
+    width: 100%;
+    font-size: 14px;
+    line-height: 16.94px;
+    border-bottom: 1px solid rgba(0, 0,0, 0.2);
+    border-radius: 0;
+    font-weight: normal;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+
+    .form__text_name {
+        margin-bottom: 18px;
+    }
+}

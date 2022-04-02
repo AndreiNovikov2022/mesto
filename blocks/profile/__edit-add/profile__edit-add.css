@@ -1,0 +1,24 @@
+.profile__edit-add {
+    width: 760px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+
+    .profile__edit-add {
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+
+    .profile__edit-add {
+        flex-direction: column;
+        width: calc(100% - 0px);
+    }
+}

@@ -1,0 +1,32 @@
+.profile__about-me {
+    max-width: 533px;
+    font-size: 18px;
+    line-height: 21.78px;
+    height: 18px;
+    font-weight: normal;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 16px 0 0 0;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+
+    .profile__about-me {
+        max-width: 188px;
+        font-size: 14px;
+        line-height: 16.94px;
+        height: 14px;
+        padding: 14px 0 36px 0;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+
+    .profile__about-me {
+        max-width: 188px;
+        font-size: 14px;
+        line-height: 16.94px;
+        height: 14px;
+        padding: 14px 0 36px 0;
+    }
+}

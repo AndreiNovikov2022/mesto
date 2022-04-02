@@ -1,0 +1,13 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-self: left;
+    width: 100%;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+
+    .form {
+        min-width: 238px;
+    }
+}

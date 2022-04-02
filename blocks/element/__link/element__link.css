@@ -1,0 +1,11 @@
+.element__link {
+    position: absolute;
+    cursor: pointer;
+    opacity: 1.0;
+    right: 20px;
+    top: 30px;
+}
+
+.element__link:hover {
+    opacity: 0.5;
+}

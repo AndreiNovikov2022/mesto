@@ -7,17 +7,7 @@
     align-items: center;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1279px) {
-
-    .profile {
-        width: calc(100% - 19px * 2);
-        height: 100%;
-        margin: 42px auto 0;
-        flex-direction: column;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 767px) {
+@media screen and (min-width: 320px) and (max-width: 1279px) {
 
     .profile {
         width: calc(100% - 19px * 2);

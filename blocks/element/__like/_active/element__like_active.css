@@ -1,3 +1,5 @@
 .element__like_active {
-    background: url("../../../../images/elements/union.png") no-repeat;
+    background: url("../../../../images/elements/union.svg") no-repeat;
+    width: 22px;
+    height: 19px;
 }

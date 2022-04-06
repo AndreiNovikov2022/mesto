@@ -6,11 +6,11 @@ const modalCloseButton = modalWindow.querySelector('.popup__close'); // созд
 
 const nameInput = document.querySelector('.profile__name'); // создаем константу, которая работает с именем на странице
 
-const formNameInput = document.querySelector('.form__text_name'); // создаем константу, которая работает с именем в модальном окне
+const formNameInput = document.querySelector('.form__text_content_name'); // создаем константу, которая работает с именем в модальном окне
 
 const jobInput = document.querySelector('.profile__about-me'); // создаем константу, которая работает с профессией на странице
 
-const formJobInput = document.querySelector('.form__text_job'); // создаем константу, которая работает с профессией в модальном окне
+const formJobInput = document.querySelector('.form__text_content_job'); // создаем константу, которая работает с профессией в модальном окне
 
 const EditForm = document.querySelector('form'); // cоздаем константу для работы с формой в модальном окне
 

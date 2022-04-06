@@ -4,10 +4,20 @@
     font-weight: 900;
     width: 100%;
     color: #000000;
-    padding: 0;
+    padding: 0 48px 0 0;
     margin: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    padding-right: 48px;
+}
+
+.element__title:last-of-type {
+    padding: 0 35px 0 0;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1279px) {
+
+    .element__title:last-of-type{
+        padding: 0 48px 0 0;
+    }
 }

@@ -2,21 +2,15 @@
     width: 10px;
     height: 10px;
     background-size: cover;
+    margin: 0 0 7px 7px;
+    padding: 0;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1279px) {
+@media screen and (min-width: 320px) and (max-width: 1279px) {
 
     .edit-button__image {
         width: 7.5px;
         height: 7.5px;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 767px) {
-
-
-    .edit-button__image {
-        width: 7.5px;
-        height: 7.5px;
+        margin: 0 0 5.25px 5.25px;
     }
 }

@@ -1,16 +1,16 @@
 .footer {
-    width: culc(100% - 200px - 762px);
+    max-width: 880px;
     display: flex;
     flex-direction: row;
     justify-content: left;
-    margin: 67px 0 0 200px;
+    margin: 67px 200px 0 200px;
     padding: 0;
 }
 
 @media screen and (min-width: 320px) and (max-width: 1279px) {
 
     .footer {
-        margin: 48px 0 0 19px;
+        margin: 48px 19px 0 19px;
         width: 282px;
     }
 }

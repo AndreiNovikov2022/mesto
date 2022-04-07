@@ -9,8 +9,11 @@
     padding: 0;
     margin: 0;
     border: 2px solid #FFFFFF;
+    background: #000000;
     box-sizing: border-box;
     border-radius: 2px;
+    background-image: url(./images/profile/profile-plus.svg) center no-repeat;
+    
 }
 
 .add-button:hover {

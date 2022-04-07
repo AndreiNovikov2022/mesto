@@ -26,8 +26,6 @@
 
 @import url(../blocks/header/__logo/header__logo.css);
 
-@import url(../blocks/header/__line-pic/header__line-pic.css);
-
 @import url(../blocks/profile/__item/profile__item.css);
 
 @import url(../blocks/profile/__image/profile__image.css);
@@ -64,7 +62,7 @@
 
 @import url(../blocks/popup/__title/popup__title.css);
 
-@import url(../blocks/popup/__opened/popup__opened.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
 
 @import url(../blocks/popup/__close/popup__close.css);
 

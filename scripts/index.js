@@ -6,13 +6,13 @@ const modalCloseButton = modalWindow.querySelector('.popup__close'); /** cозд
 
 const nameInput = document.querySelector('.profile__name'); /** создаем константу, которая работает с именем на странице */
 
-const formNameInput = document.querySelector('.form__text_content_name'); /** создаем константу, которая работает с именем в модальном окне */
+const formNameInput = document.getElementsByName('form-text-content-name')[0]; /** создаем константу, которая работает с именем в модальном окне */
 
 const jobInput = document.querySelector('.profile__about-me'); /** создаем константу, которая работает с профессией на странице */
 
-const formJobInput = document.querySelector('.form__text_content_job'); /** создаем константу, которая работает с профессией в модальном окне */
+const formJobInput = document.getElementsByName('form-text-content-job')[0]; /** создаем константу, которая работает с профессией в модальном окне */
 
-const editForm = document.querySelector('form'); /** cоздаем константу для работы с формой в модальном окне */
+const editForm = document.getElementsByName('form-edit-button')[0]; /** cоздаем константу для работы с формой в модальном окне */
 
 
 /**  работа с вызовом и закрытием модального окна */
@@ -54,7 +54,7 @@ editForm.addEventListener('submit', formSubmitHandler); /** вызов функ�
 
 /** работа с выставлением лайков на странице 
 
-const setLike = document.getElementsByClassName('element__link'); /** создаем константу для нажатия на кнопку 'element__link' для выставления лайка. Здесь ипользуем селектор getElementsByClassName
+const setLike = document.getElementsByClassName('element__like'); /** создаем константу для нажатия на кнопку 'element__link' для выставления лайка. Здесь ипользуем селектор getElementsByClassName
 
 function toggleSetLike(evt) { /** создаем функцию, работающую при выставлении лайков
 

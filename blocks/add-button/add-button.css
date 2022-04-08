@@ -1,19 +1,17 @@
 .add-button {
     width: 150px;
     height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     opacity: 1.0;
     cursor: pointer;
     padding: 0;
     margin: 0;
     border: 2px solid #FFFFFF;
-    background: #000000;
+    background: url('../../images/profile/profile-plus.svg');
+    background-repeat: no-repeat;
+    background-position: center;
     box-sizing: border-box;
     border-radius: 2px;
-    background-image: url(./images/profile/profile-plus.svg) center no-repeat;
-    
+    background-size: auto;
 }
 
 .add-button:hover {
@@ -24,6 +22,7 @@
 
     .add-button {
         width: 282px;
+        background-size: 16px;
     }
 }
 
@@ -31,5 +30,6 @@
 
     .add-button {
         width: 100%;
+        background-size: 16px;
     }
 }

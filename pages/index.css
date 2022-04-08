@@ -40,17 +40,11 @@
 
 @import url(../blocks/profile/__about-me/profile__about-me.css);
 
-@import url(../blocks/edit-button/__image/edit-button__image.css);
-
-@import url(../blocks/add-button/__image/add-button__image.css);
-
 @import url(../blocks/element/__item/element__item.css);
 
 @import url(../blocks/element/__image/element__image.css);
 
 @import url(../blocks/element/__like/element__like.css);
-
-@import url(../blocks/element/__link/element__link.css);
 
 @import url(../blocks/element/__name/element__name.css);
 

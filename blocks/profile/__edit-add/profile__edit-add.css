@@ -12,12 +12,7 @@
 
     .profile__edit-add {
         flex-direction: column;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 767px) {
-
-    .profile__edit-add {
-        width: calc(100% - 0px);
+        width: 100%;
+        min-width: 282px;
     }
 }

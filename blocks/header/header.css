@@ -5,7 +5,7 @@
     justify-content: space-between;
     padding: 45px 0 0;
     margin: 0 auto;
-    border-bottom: 1px solid rgba(33%, 33%, 33%, 1);
+    border-bottom: 1px solid rgba(33%, 33%, 33%, 0.7);
     border-radius: 0;
     box-sizing: border-box;
     margin-bottom: 40px;
@@ -15,6 +15,6 @@
 
     .header {
         width: 100%;
-        padding: 26px 0 0;
+        padding: 28px 0 0;
     }
 }

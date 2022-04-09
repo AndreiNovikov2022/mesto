@@ -22,83 +22,83 @@
           <div class="profile__info">
             <div class="profile__title">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button type="button" name="edit-button" aria-label="Редактировать профиль" class="edit-button">
+              <button type="button" name="edit-button" aria-label="Редактировать профиль" class="profile__edit-button">
               </button>
             </div>
             <p class="profile__about-me">Исследователь океана</p>
           </div>
-          <button type="button" name="add-button" aria-label="Добавить профиль" class="add-button">
+          <button type="button" name="add-button" aria-label="Добавить профиль" class="profile__add-button">
           </button>
         </div>
       </section>
-      <section class="elements">
-        <ul class="element">
-          <li class="element__item">
+      <ul class="elements">
+        <li class="element">
+          <div class="element__item">
             <img src="./images/elements/kirill-pershin-1088404-unsplash.png" alt="Фотография Карачаевска"
               class="element__image">
-          </li>
-          <li class="element__name">
+          </div>
+          <div class="element__name">
             <h2 class="element__title">Карачаевск</h2>
             <button type="button" name="like_active" aria-label="Поставить лайк" class="element__like">
             </button>
-          </li>
-        </ul>
-        <ul class="element">
-          <li class="element__item">
+          </div>
+        </li>
+        <li class="element">
+          <div class="element__item">
             <img src="./images/elements/kirill-pershin-1404681-unsplash.png" alt="Фотография Эльбруса"
               class="element__image">
-          </li>
-          <li class="element__name">
+          </div>
+          <div class="element__name">
             <h2 class="element__title">Гора Эльбрус</h2>
             <button type="button" name="like_active" aria-label="Поставить лайк" class="element__like">
             </button>
-          </li>
-        </ul>
-        <ul class="element">
-          <li class="element__item">
+          </div>
+        </li>
+        <li class="element">
+          <div class="element__item">
             <img src="./images/elements/kirill-pershin-1556355-unsplash.png" alt="Фотография Домбая"
               class="element__image">
-          </li>
-          <li class="element__name">
+          </div>
+          <div class="element__name">
             <h2 class="element__title">Домбай</h2>
             <button type="button" name="like_active" aria-label="Поставить лайк" class="element__like">
             </button>
-          </li>
-        </ul>
-        <ul class="element">
-          <li class="element__item">
+          </div>
+        </li>
+        <li class="element">
+          <div class="element__item">
             <img src="./images/elements/kirill-pershin-1404681-unsplash.png" alt="Фотография Эльбруса"
               class="element__image">
-          </li>
-          <li class="element__name">
+          </div>
+          <div class="element__name">
             <h2 class="element__title">Гора Эльбрус</h2>
             <button type="button" name="like_active" aria-label="Поставить лайк" class="element__like">
             </button>
-          </li>
-        </ul>
-        <ul class="element">
-          <li class="element__item">
+          </div>
+        </li>
+        <li class="element">
+          <div class="element__item">
             <img src="./images/elements/kirill-pershin-1556355-unsplash.png" alt="Фотография Домбая"
               class="element__image">
-          </li>
-          <li class="element__name">
+          </div>
+          <div class="element__name">
             <h2 class="element__title">Домбай</h2>
             <button type="button" name="like_active" aria-label="Поставить лайк" class="element__like">
             </button>
-          </li>
-        </ul>
-        <ul class="element">
-          <li class="element__item">
+          </div>
+        </li>
+        <li class="element">
+          <div class="element__item">
             <img src="./images/elements/kirill-pershin-1088404-unsplash.png" alt="Фотография Карачаево-Черкессии"
               class="element__image">
-          </li>
-          <li class="element__name">
+          </div>
+          <div class="element__name">
             <h2 class="element__title">Карачаево-Черкессия</h2>
             <button type="button" name="like_active" aria-label="Поставить лайк" class="element__like">
             </button>
-          </li>
-        </ul>
-      </section>
+          </div>
+        </li>
+      </ul>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
@@ -109,8 +109,8 @@
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="form" name="form-edit-button">
           <div class="form__fields">
-            <input type="text" name="form-text-content-name" placeholder="Введите имя" class="form__text">
-            <input type="text" name="form-text-content-job" placeholder="Укажите профессию" class="form__text">
+            <input type="text" name="content-name" placeholder="Введите имя" class="form__text form__text_content_name">
+            <input type="text" name="content-job" placeholder="Укажите профессию" class="form__text form__text_content_job">
           </div>
           <button type="submit" class="form__submit">Сохранить</button>
         </form>

@@ -1,6 +1,6 @@
 .elements {
     width: 880px;
-    padding: 51px 0 0;
+    padding: 50px 0 0;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, minmax(282px, 1fr));

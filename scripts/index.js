@@ -1,4 +1,4 @@
-const openEditForm = document.querySelector('.edit-button'); /** создаем константу для нажатия на кнопку редактирования профиля */
+const openEditForm = document.querySelector('.profile__edit-button'); /** создаем константу для нажатия на кнопку редактирования профиля */
 
 const modalWindow = document.querySelector('.popup'); /** создаем константу для открытия модального окна */
 
@@ -6,29 +6,24 @@ const modalCloseButton = modalWindow.querySelector('.popup__close'); /** cозд
 
 const nameInput = document.querySelector('.profile__name'); /** создаем константу, которая работает с именем на странице */
 
-const formNameInput = document.getElementsByName('form-text-content-name')[0]; /** создаем константу, которая работает с именем в модальном окне */
+const formNameInput = document.querySelector('.form__text_content_name'); /** создаем константу, которая работает с именем в модальном окне */
 
 const jobInput = document.querySelector('.profile__about-me'); /** создаем константу, которая работает с профессией на странице */
 
-const formJobInput = document.getElementsByName('form-text-content-job')[0]; /** создаем константу, которая работает с профессией в модальном окне */
+const formJobInput = document.querySelector('.form__text_content_job'); /** создаем константу, которая работает с профессией в модальном окне */
 
-const editForm = document.getElementsByName('form-edit-button')[0]; /** cоздаем константу для работы с формой в модальном окне */
+const editForm = document.querySelector("[name='form-edit-button']"); /** cоздаем константу для работы с формой в модальном окне */
 
 
 /**  работа с вызовом и закрытием модального окна */
 
-function openModalWindow() { /** создаем функцию, которая работает с открытием модального окна */
+function toggleModalWindow() { /** создаем функцию, которая работает с открытием и закрытием модального окна */
 
-    modalWindow.classList.toggle('popup_opened'); /** открытие модального окна */
+    modalWindow.classList.toggle('popup_opened'); /** открытие и закрытие модального окна */
 
     formNameInput.value = nameInput.textContent; /** присваиваем начальное значение имени полю с именем в форме модального окна */
 
     formJobInput.value = jobInput.textContent; /** присваиваем начальное значение профессии полю с именем в форме модального окна */
-}
-
-function closeModalWindow() { /** создаем функцию, которая работает с закрытием модального окна */
-
-    modalWindow.classList.toggle('popup_opened'); /** закрытие модального окна */
 }
 
 /** работа с кнопкой 'submit' */
@@ -40,13 +35,12 @@ function formSubmitHandler(evt) { /** создаем функцию, котор�
     nameInput.textContent = formNameInput.value; /** отправляем новое значение имени в поле с именем в index.html */
 
     jobInput.textContent = formJobInput.value; /** отправляем новое значение профессии в в поле с профессией в index.html */
-    
-    closeModalWindow(); /** закрытие модального окна с сохранением данных */
+
 }
 
-openEditForm.addEventListener('click', openModalWindow); /** вызываем функцию openModalWindow() нажатием на кнопку ('.edit-button') и открытии модального окна */
+openEditForm.addEventListener('click', toggleModalWindow); /** вызываем функцию toggleModalWindow() нажатием на кнопку ('.edit-button') и открытии модального окна */
 
-modalCloseButton.addEventListener('click', closeModalWindow); /** вызов функции closeModalWindow() происходит при закрытии модального окна */
+modalCloseButton.addEventListener('click', toggleModalWindow); /** вызов функции toggleModalWindow() происходит при закрытии модального окна */
 
 editForm.addEventListener('submit', formSubmitHandler); /** вызов функции formSubmitHandler по нажатию на кнопку 'submit' */
 

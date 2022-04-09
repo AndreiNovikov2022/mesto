@@ -10,10 +10,6 @@
 
 @import url(../blocks/profile/profile.css);
 
-@import url(../blocks/edit-button/edit-button.css);
-
-@import url(../blocks/add-button/add-button.css);
-
 @import url(../blocks/elements/elements.css);
 
 @import url(../blocks/element/element.css);
@@ -40,6 +36,10 @@
 
 @import url(../blocks/profile/__about-me/profile__about-me.css);
 
+@import url(../blocks/profile/__edit-button/profile__edit-button.css);
+
+@import url(../blocks/profile/__add-button/profile__add-button.css);
+
 @import url(../blocks/element/__item/element__item.css);
 
 @import url(../blocks/element/__image/element__image.css);
@@ -65,7 +65,3 @@
 @import url(../blocks/form/__text/form__text.css);
 
 @import url(../blocks/form/__fields/form__fields.css);
-
-@import url(../blocks/element/__like/_no-active/element__like_no-active.css);
-
-@import url(../blocks/element/__like/_active/element__like_active.css);

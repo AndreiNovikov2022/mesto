@@ -1,73 +1,227 @@
-const openEditForm = document.querySelector('.profile__edit-button'); /** создаем константу для нажатия на кнопку редактирования профиля */
+const openEditForm = document.querySelector('.profile__edit-button');
 
-const modalWindow = document.querySelector('.popup'); /** создаем константу для открытия модального окна */
+const openAddForm = document.querySelector('.profile__add-button');
 
-const modalCloseButton = modalWindow.querySelector('.popup__close'); /** cоздаем константу для закрытия модального окна */
+const addModalWindow = document.querySelector('.popup_add-button');
 
-const nameInput = document.querySelector('.profile__name'); /** создаем константу, которая работает с именем на странице */
+const addModalCloseButton = addModalWindow.querySelector('.popup__close');
 
-const formNameInput = document.querySelector('.form__text_content_name'); /** создаем константу, которая работает с именем в модальном окне */
+const editModalWindow = document.querySelector('.popup_edit-button');
 
-const jobInput = document.querySelector('.profile__about-me'); /** создаем константу, которая работает с профессией на странице */
+const editModalCloseButton = editModalWindow.querySelector('.popup__close');
 
-const formJobInput = document.querySelector('.form__text_content_job'); /** создаем константу, которая работает с профессией в модальном окне */
+const imageModalWindow = document.querySelector('.popup_advent-image');
 
-const editForm = document.querySelector("[name='form-edit-button']"); /** cоздаем константу для работы с формой в модальном окне */
+const imageModalCloseButton = imageModalWindow.querySelector('.popup__close');
 
+const nameInput = document.querySelector('.profile__name');
 
-/**  работа с вызовом и закрытием модального окна */
+const formNameInput = document.querySelector('.form__text_content_name');
 
-function openModalWindow() { /** создаем функцию, которая работает с открытием модального окна */
+const jobInput = document.querySelector('.profile__about-me');
 
-    modalWindow.classList.add('popup_opened'); /** открытие и закрытие модального окна */
+const formJobInput = document.querySelector('.form__text_content_job');
 
-    formNameInput.value = nameInput.textContent; /** присваиваем начальное значение имени полю с именем в форме модального окна */
+const formLinkInput = document.querySelector('.form__text_content_link');
 
-    formJobInput.value = jobInput.textContent; /** присваиваем начальное значение профессии полю с именем в форме модального окна */
+const formNamedInput = document.querySelector('.form__text_content_named');
+
+const imageInputPopup = document.querySelector('.popup__image');
+
+const popupNamedInput = document.querySelector('.popup__header');
+
+const editForm = document.querySelector("[name='form-edit-button']"); 
+
+const addForm = document.querySelector("[name='form-add-button']"); 
+
+const setLike = document.getElementsByClassName('element__like');
+
+const initialCards = [
+    {
+        name: 'Архыз',
+        src: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+        alt: 'Фотография Архыза'
+    },
+    {
+        name: 'Челябинская область',
+        src: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
+        alt: 'Фотография Челябинской области'
+    },
+    {
+        name: 'Иваново',
+        src: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
+        alt: 'Фотография Иваново'
+    },
+    {
+        name: 'Камчатка',
+        src: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
+        alt: 'Фотография Камчатки'
+    },
+    {
+        name: 'Холмогорский район',
+        src: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
+        alt: 'Фотография Холмогорского района'
+    },
+    {
+        name: 'Байкал',
+        src: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
+        alt: 'Фотография Байкала'
+    }
+  ]; 
+
+const listContainer = document.querySelector(".elements");
+
+const template = document.querySelector(".template");
+
+function render() {
+
+    const html = initialCards.map(getElement);
+
+    listContainer.append(...html);
 }
 
-function closeModalWindow() { /** создаем функцию, которая работает с закрытием модального окна */
+render();
 
-    modalWindow.classList.remove('popup_opened'); /** открытие и закрытие модального окна */
-}
+function getElement(item) {
 
-/** работа с кнопкой 'submit' */
+    const getElementTemplate = template.content.cloneNode(true);
 
-function formSubmitHandler(evt) { /** создаем функцию, которая работает с сохранением введенных данных и закрытием модального окна */
+    const name = getElementTemplate.querySelector(".element__title");
 
-    evt.preventDefault(); /** Эта строчка отменяет стандартную отправку формы */
+    name.textContent = item.name;
 
-    nameInput.textContent = formNameInput.value; /** отправляем новое значение имени в поле с именем в index.html */
+    const img = getElementTemplate.querySelector(".element__image");
 
-    jobInput.textContent = formJobInput.value; /** отправляем новое значение профессии в поле с профессией в index.html */
+    img.src = item.src;
 
-    closeModalWindow();
-}
+    img.alt = item.alt;
 
-openEditForm.addEventListener('click', openModalWindow); /** вызываем функцию openModalWindow() нажатием на кнопку ('.edit-button') и открытии модального окна */
+    const setLikeTemplate = getElementTemplate.querySelector(".element__like");
 
-modalCloseButton.addEventListener('click', closeModalWindow); /** вызов функции closeModalWindow() происходит при закрытии модального окна */
+    const deleteElementTemplate = getElementTemplate.querySelector('.element__delete-button');
 
-editForm.addEventListener('submit', formSubmitHandler); /** вызов функции formSubmitHandler по нажатию на кнопку 'submit' */
+    const openImageFormTemplate = getElementTemplate.querySelector('.element__image');
 
+    function openImageModalWindow() {
 
-
-/** работа с выставлением лайков на странице 
-
-const setLike = document.getElementsByClassName('element__like'); /** создаем константу для нажатия на кнопку 'element__link' для выставления лайка. Здесь ипользуем селектор getElementsByClassName
-
-function toggleSetLike(evt) { /** создаем функцию, работающую при выставлении лайков
-
-  evt.preventDefault(); /** Эта строчка отменяет стандартную отправку формы
-
-  evt.target.classList.toggle('element__like_active'); /** при клике меняет 'element__like_no-active' на 'element__like_active' и наоборот
+        imageModalWindow.classList.add('popup_opened');
     
-  evt.target.classList.toggle('element__like_no-active'); /** при клике меняет 'element__like_active' на 'element__like_тno-active' и наоборот
+        imageInputPopup.src = openImageFormTemplate.src;
+
+        popupNamedInput.textContent = item.name;
+    
+    }
+
+    openImageFormTemplate.addEventListener('click', openImageModalWindow);
+
+    setLikeTemplate.addEventListener('click', toggleSetLike);
+
+    deleteElementTemplate.addEventListener('click', removeElement);
+
+    return getElementTemplate;
 }
 
-for (i = 0; i < setLike.length; i++) { /** запускаем цикл, который будет работать с массивом данных длиной (5). Всего 6 позиций на странице с лайками.
+const deleteElement = document.querySelector('.element__delete-button');
 
-setLike[i].addEventListener('click', toggleSetLike); /** вызов функции toggleStayLike, кликом на любую из 6 позиций на странице
+function removeElement(evt) {
+
+    const element = evt.target.closest(".element");
+
+    element.remove();
+}
+
+for (i = 0; i <= deleteElement; i++) {
+
+    deleteElement[i].addEventListener('click', removeElement);
+}
+
+function toggleSetLike(evt) {
+
+    evt.preventDefault();
+
+    evt.target.classList.toggle('element__like_active');
+    
+    evt.target.classList.toggle('element__like_no-active');
+}
+
+for (i = 0; i < setLike.length; i++) {
+
+    setLike[i].addEventListener('click', toggleSetLike);
 
 }
-*/
+
+function openAddModalWindow() {
+
+    addModalWindow.classList.add('popup_opened');
+
+}
+
+function openEditModalWindow() {
+
+    editModalWindow.classList.add('popup_opened');
+
+    formNameInput.value = nameInput.textContent;
+
+    formJobInput.value = jobInput.textContent;
+}
+
+function closeAddModalWindow() {
+
+    addModalWindow.classList.remove('popup_opened');
+
+    formNamedInput.value = null;
+
+    formLinkInput.value = null;
+}
+
+function closeEditModalWindow() {
+
+    editModalWindow.classList.remove('popup_opened');
+}
+
+function closeImageModalWindow() {
+
+    imageModalWindow.classList.remove('popup_opened');
+}
+
+function formAddSubmitHandler(evt) {
+
+    evt.preventDefault();
+
+    const formNamedInput = document.querySelector('.form__text_content_named').value;
+
+    const formLinkInput = document.querySelector('.form__text_content_link').value;
+
+    const itemCard = {name: formNamedInput, src: formLinkInput, alt: 'Фотография места'};
+
+    const element = getElement(itemCard);
+
+    listContainer.prepend(element);
+
+    closeAddModalWindow();
+}
+
+function formEditSubmitHandler(evt) {
+
+    evt.preventDefault();
+
+    nameInput.textContent = formNameInput.value;
+
+    jobInput.textContent = formJobInput.value;
+
+    closeEditModalWindow();
+}
+
+openEditForm.addEventListener('click', openEditModalWindow);
+
+openAddForm.addEventListener('click', openAddModalWindow);
+
+editModalCloseButton.addEventListener('click', closeEditModalWindow);
+
+addModalCloseButton.addEventListener('click', closeAddModalWindow);
+
+imageModalCloseButton.addEventListener('click', closeImageModalWindow);
+
+editForm.addEventListener('submit', formEditSubmitHandler);
+
+addForm.addEventListener('submit', formAddSubmitHandler);

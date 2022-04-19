@@ -149,7 +149,7 @@ function handleFormAddSubmit(evt) {
 
   listContainer.prepend(element);
 
-  closePopup(evt.target.parentNode.parentNode);
+  closePopup(evt.target.closest(".popup_add-button"));
 }
 
 function handleFormEditSubmit(evt) {
@@ -160,7 +160,7 @@ function handleFormEditSubmit(evt) {
 
   jobInput.textContent = formJobInput.value;
 
-  closePopup(evt.target.parentNode.parentNode);
+  closePopup(evt.target.closest(".popup_edit-button"));
 }
 
 formOpenEdit.addEventListener('click', hundleOpenEditForm);

@@ -7,6 +7,7 @@
   <meta name="keywords" content="html, css">
   <base href="./">
   <link rel="stylesheet" type="text/css" href="./pages/index.css">
+  <script src="scripts/cards.js"></script>
   <script defer src="scripts/index.js"></script>
   <title>Mesto Russia</title>
 </head>
@@ -72,7 +73,7 @@
         <form class="form" name="form-add-button">
           <div class="form__fields">
             <input type="text" name="content-named" placeholder="Название" class="form__text form__text_content_named">
-            <input type="text" name="content-link" placeholder="Ссылка на картинку" class="form__text form__text_content_link">
+            <input type="url" name="content-link" placeholder="Ссылка на картинку" class="form__text form__text_content_link">
           </div>
           <button type="submit" class="form__submit">Сохранить</button>
         </form>
@@ -80,7 +81,7 @@
     </div>
     <div class="popup popup_advent-image">
       <div class="popup__content">
-        <img src="по умолчанию" alt="" class="popup__image">
+        <img src="#" alt="" class="popup__image">
         <button class="popup__close" type="button"></button>
         <h3 class="popup__header"></h3>
       </div>

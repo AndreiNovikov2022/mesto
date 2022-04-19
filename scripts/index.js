@@ -1,18 +1,16 @@
-const openEditForm = document.querySelector('.profile__edit-button');
+const popup = document.querySelector('.popup');
 
-const openAddForm = document.querySelector('.profile__add-button');
+const buttonsClosePopup = document.querySelectorAll('.popup__close');
 
-const addModalWindow = document.querySelector('.popup_add-button');
+const formOpenEdit = document.querySelector('.profile__edit-button');
 
-const addModalCloseButton = addModalWindow.querySelector('.popup__close');
+const formOpenAdd = document.querySelector('.profile__add-button');
 
-const editModalWindow = document.querySelector('.popup_edit-button');
+const formEditModalWindow = document.querySelector('.popup_edit-button');
 
-const editModalCloseButton = editModalWindow.querySelector('.popup__close');
+const formAddModalWindow = document.querySelector('.popup_add-button');
 
 const imageModalWindow = document.querySelector('.popup_advent-image');
-
-const imageModalCloseButton = imageModalWindow.querySelector('.popup__close');
 
 const nameInput = document.querySelector('.profile__name');
 
@@ -30,44 +28,11 @@ const imageInputPopup = document.querySelector('.popup__image');
 
 const popupNamedInput = document.querySelector('.popup__header');
 
-const editForm = document.querySelector("[name='form-edit-button']"); 
+const formEdit = document.querySelector("[name='form-edit-button']");
 
-const addForm = document.querySelector("[name='form-add-button']"); 
+const formAdd = document.querySelector("[name='form-add-button']");
 
-const setLike = document.getElementsByClassName('element__like');
-
-const initialCards = [
-    {
-        name: 'Архыз',
-        src: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-        alt: 'Фотография Архыза'
-    },
-    {
-        name: 'Челябинская область',
-        src: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-        alt: 'Фотография Челябинской области'
-    },
-    {
-        name: 'Иваново',
-        src: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-        alt: 'Фотография Иваново'
-    },
-    {
-        name: 'Камчатка',
-        src: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-        alt: 'Фотография Камчатки'
-    },
-    {
-        name: 'Холмогорский район',
-        src: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-        alt: 'Фотография Холмогорского района'
-    },
-    {
-        name: 'Байкал',
-        src: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-        alt: 'Фотография Байкала'
-    }
-  ]; 
+const likeSet = document.getElementsByClassName('element__like');
 
 const listContainer = document.querySelector(".elements");
 
@@ -75,153 +40,135 @@ const template = document.querySelector(".template");
 
 function render() {
 
-    const html = initialCards.map(getElement);
+  const html = initialCards.map(getElement);
 
-    listContainer.append(...html);
+  listContainer.append(...html);
 }
 
 render();
 
 function getElement(item) {
 
-    const getElementTemplate = template.content.cloneNode(true);
+  const getElementTemplate = template.content.cloneNode(true);
 
-    const name = getElementTemplate.querySelector(".element__title");
+  const name = getElementTemplate.querySelector(".element__title");
 
-    name.textContent = item.name;
+  name.textContent = item.name;
 
-    const img = getElementTemplate.querySelector(".element__image");
+  const img = getElementTemplate.querySelector(".element__image");
 
-    img.src = item.src;
+  img.src = item.src;
 
-    img.alt = item.alt;
+  img.alt = item.alt;
 
-    const setLikeTemplate = getElementTemplate.querySelector(".element__like");
+  const likeSetTemplate = getElementTemplate.querySelector(".element__like");
 
-    const deleteElementTemplate = getElementTemplate.querySelector('.element__delete-button');
+  const elementTemplateDelete = getElementTemplate.querySelector('.element__delete-button');
 
-    const openImageFormTemplate = getElementTemplate.querySelector('.element__image');
+  const imageOpenFormTemplate = getElementTemplate.querySelector('.element__image');
 
-    function openImageModalWindow() {
+  function handleOpenImage() {
 
-        imageModalWindow.classList.add('popup_opened');
-    
-        imageInputPopup.src = openImageFormTemplate.src;
+    imageInputPopup.src = imageOpenFormTemplate.src;
 
-        popupNamedInput.textContent = item.name;
-    
-    }
+    popupNamedInput.textContent = item.name;
 
-    openImageFormTemplate.addEventListener('click', openImageModalWindow);
+    imageInputPopup.alt = 'Фотография места: ' + item.name;
 
-    setLikeTemplate.addEventListener('click', toggleSetLike);
+    openPopup(imageModalWindow);
+  }
 
-    deleteElementTemplate.addEventListener('click', removeElement);
+  imageOpenFormTemplate.addEventListener('click', handleOpenImage);
 
-    return getElementTemplate;
+  likeSetTemplate.addEventListener('click', toggleLikeSet);
+
+  elementTemplateDelete.addEventListener('click', handleRemoveElement);
+
+  return getElementTemplate;
 }
 
-const deleteElement = document.querySelector('.element__delete-button');
+function handleRemoveElement(evt) {
 
-function removeElement(evt) {
+  const element = evt.target.closest(".element");
 
-    const element = evt.target.closest(".element");
-
-    element.remove();
+  element.remove();
 }
 
-for (i = 0; i <= deleteElement; i++) {
+function toggleLikeSet(evt) {
 
-    deleteElement[i].addEventListener('click', removeElement);
+  evt.preventDefault();
+
+  evt.target.classList.toggle('element__like_active');
+
+  evt.target.classList.toggle('element__like_no-active');
 }
 
-function toggleSetLike(evt) {
+function openPopup(popup) {
 
-    evt.preventDefault();
-
-    evt.target.classList.toggle('element__like_active');
-    
-    evt.target.classList.toggle('element__like_no-active');
+  popup.classList.add('popup_opened');
 }
 
-for (i = 0; i < setLike.length; i++) {
+function closePopup(popup) {
 
-    setLike[i].addEventListener('click', toggleSetLike);
-
+  popup.classList.remove('popup_opened');
 }
 
-function openAddModalWindow() {
+function hundleOpenEditForm() {
 
-    addModalWindow.classList.add('popup_opened');
+  formNameInput.value = nameInput.textContent;
 
+  formJobInput.value = jobInput.textContent;
+
+  openPopup(formEditModalWindow);
 }
 
-function openEditModalWindow() {
+function hundleOpenAddForm() {
 
-    editModalWindow.classList.add('popup_opened');
+  formNamedInput.value = null;
 
-    formNameInput.value = nameInput.textContent;
+  formLinkInput.value = null;
 
-    formJobInput.value = jobInput.textContent;
+  openPopup(formAddModalWindow);
 }
 
-function closeAddModalWindow() {
+function handleFormAddSubmit(evt) {
 
-    addModalWindow.classList.remove('popup_opened');
+  evt.preventDefault();
 
-    formNamedInput.value = null;
+  const formNamedInput = document.querySelector('.form__text_content_named').value;
 
-    formLinkInput.value = null;
+  const formLinkInput = document.querySelector('.form__text_content_link').value;
+
+  const itemCard = {
+    name: formNamedInput,
+    src: formLinkInput,
+    alt: 'Фотография места: ' + formNamedInput
+  };
+
+  const element = getElement(itemCard);
+
+  listContainer.prepend(element);
+
+  closePopup(evt.target.parentNode.parentNode);
 }
 
-function closeEditModalWindow() {
+function handleFormEditSubmit(evt) {
 
-    editModalWindow.classList.remove('popup_opened');
+  evt.preventDefault();
+
+  nameInput.textContent = formNameInput.value;
+
+  jobInput.textContent = formJobInput.value;
+
+  closePopup(evt.target.parentNode.parentNode);
 }
 
-function closeImageModalWindow() {
+formOpenEdit.addEventListener('click', hundleOpenEditForm);
 
-    imageModalWindow.classList.remove('popup_opened');
-}
+formOpenAdd.addEventListener('click', hundleOpenAddForm);
 
-function formAddSubmitHandler(evt) {
+formEdit.addEventListener('submit', handleFormEditSubmit);
 
-    evt.preventDefault();
+formAdd.addEventListener('submit', handleFormAddSubmit);
 
-    const formNamedInput = document.querySelector('.form__text_content_named').value;
-
-    const formLinkInput = document.querySelector('.form__text_content_link').value;
-
-    const itemCard = {name: formNamedInput, src: formLinkInput, alt: 'Фотография места'};
-
-    const element = getElement(itemCard);
-
-    listContainer.prepend(element);
-
-    closeAddModalWindow();
-}
-
-function formEditSubmitHandler(evt) {
-
-    evt.preventDefault();
-
-    nameInput.textContent = formNameInput.value;
-
-    jobInput.textContent = formJobInput.value;
-
-    closeEditModalWindow();
-}
-
-openEditForm.addEventListener('click', openEditModalWindow);
-
-openAddForm.addEventListener('click', openAddModalWindow);
-
-editModalCloseButton.addEventListener('click', closeEditModalWindow);
-
-addModalCloseButton.addEventListener('click', closeAddModalWindow);
-
-imageModalCloseButton.addEventListener('click', closeImageModalWindow);
-
-editForm.addEventListener('submit', formEditSubmitHandler);
-
-addForm.addEventListener('submit', formAddSubmitHandler);
+buttonsClosePopup.forEach((elem) => elem.addEventListener("click", () => closePopup(elem.closest('.popup'))));

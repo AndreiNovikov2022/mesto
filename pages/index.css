@@ -20,6 +20,8 @@
 
 @import url(../blocks/form/form.css);
 
+@import url(../blocks/error/error.css);
+
 @import url(../blocks/header/__logo/header__logo.css);
 
 @import url(../blocks/profile/__item/profile__item.css);
@@ -77,3 +79,7 @@
 @import url(../blocks/element/__like/_no-active/element__like_no-active.css);
 
 @import url(../blocks/element/__like/_active/element__like_active.css);
+
+@import url(../blocks/form/__submit/_type/form__submit_type_disabled.css);
+
+@import url(../blocks/form/__text/_type/form__text_type_disabled.css);

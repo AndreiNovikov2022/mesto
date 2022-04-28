@@ -1,0 +1,11 @@
+.error {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+    position: absolute;
+    flex-direction: row;
+    display: flex;
+    width: 358px;
+    margin-top: -14px;
+}

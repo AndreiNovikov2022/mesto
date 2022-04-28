@@ -1,5 +1,13 @@
 const popup = document.querySelector('.popup');
 
+const popups = document.querySelectorAll('.popup');
+
+const errorOpenForm = document.querySelectorAll('.form__text');
+
+const buttonSubmitEditFormsActive = document.querySelectorAll('.form__submit');
+
+const errorSpanWithOpenFormEmpty = document.querySelectorAll('.error');
+
 const buttonsClosePopup = document.querySelectorAll('.popup__close');
 
 const formOpenEdit = document.querySelector('.profile__edit-button');
@@ -119,6 +127,24 @@ function hundleOpenEditForm() {
 
   formJobInput.value = jobInput.textContent;
 
+  errorOpenForm.forEach((elem) => {
+
+    elem.classList.remove('form__text_type_disabled');
+
+  });
+
+  errorSpanWithOpenFormEmpty.forEach((elem) => {
+
+    elem.textContent = '';
+
+  });
+
+  buttonSubmitEditFormsActive.forEach((elem) => {
+    
+    elem.classList.remove('form__submit_type_disabled');
+
+  });
+
   openPopup(formEditModalWindow);
 }
 
@@ -127,6 +153,24 @@ function hundleOpenAddForm() {
   formNamedInput.value = null;
 
   formLinkInput.value = null;
+
+  errorOpenForm.forEach((elem) => {
+
+    elem.classList.remove('form__text_type_disabled');
+
+  });
+
+  errorSpanWithOpenFormEmpty.forEach((elem) => {
+
+    elem.textContent = '';
+
+  });
+  
+  buttonSubmitEditFormsActive.forEach((elem) => {
+    
+    elem.classList.add('form__submit_type_disabled');
+
+  });
 
   openPopup(formAddModalWindow);
 }
@@ -140,8 +184,11 @@ function handleFormAddSubmit(evt) {
   const formLinkInput = document.querySelector('.form__text_content_link').value;
 
   const itemCard = {
+
     name: formNamedInput,
+
     src: formLinkInput,
+
     alt: 'Фотография места: ' + formNamedInput
   };
 
@@ -172,3 +219,22 @@ formEdit.addEventListener('submit', handleFormEditSubmit);
 formAdd.addEventListener('submit', handleFormAddSubmit);
 
 buttonsClosePopup.forEach((elem) => elem.addEventListener("click", () => closePopup(elem.closest('.popup'))));
+
+popups.forEach((elem) => {
+
+  document.addEventListener('keydown', (evt) => {
+
+    if (evt.key === 'Escape') {
+
+    elem.classList.remove('popup_opened');
+
+  }});
+
+  elem.addEventListener('mousedown', (evt) => {
+
+    if (evt.target === evt.currentTarget) {
+
+    elem.classList.remove('popup_opened');
+
+  }});
+});

@@ -8,7 +8,7 @@ function enableValidation(config) {
   });
 
   forms.forEach((form) => {
-    form.addEventListener('submit', (event) => event.preventDefault());
+    form.addEventListener('submit', form);
     toggleButton(form, config);
   })
 }
@@ -16,7 +16,7 @@ function enableValidation(config) {
 function toggleButton(form, config) {
   const inactiveButtonClass = form.querySelector(config.submitButtonSelector);
   inactiveButtonClass.disabled = !form.checkValidity();
-  inactiveButtonClass.classList.toggle('form__submit_type_disabled', !form.checkValidity());
+  inactiveButtonClass.classList.toggle(config.inactiveButtonClass, !form.checkValidity());
 }
  
 function handleFormInput(event, form, config) {
@@ -25,10 +25,10 @@ function handleFormInput(event, form, config) {
 
   if (input.validity.valid) {
     errorNode.textContent = '';
-    input.classList.remove('form__text_type_disabled');
+    input.classList.remove(config.inputErrorClass);
   } else {
     errorNode.textContent = input.validationMessage;
-    input.classList.add('form__text_type_disabled');
+    input.classList.add(config.inputErrorClass);
   } 
     toggleButton(form, config);
 }

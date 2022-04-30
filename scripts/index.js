@@ -62,12 +62,12 @@ function toggleLikeSet(evt) {
 }
 
 function openPopup(popup) {
-  document.addEventListener('keydown', (evt) => handleCloseKey(popup, evt));
+  document.addEventListener('keydown', handleCloseKey);
   popup.classList.add('popup_opened');
 }
 
 function closePopup(popup) {
-  document.removeEventListener('keydown', (evt) => handleCloseKey(popup, evt));
+  document.removeEventListener('keydown', handleCloseKey);
   popup.classList.remove('popup_opened');
 }
 
@@ -134,7 +134,7 @@ popups.forEach((elem) => {
   }});
 });
 
-function handleCloseKey(popup, evt) {
-    if (evt.key === 'Escape')
-      closePopup(popup);
-}
+function handleCloseKey(evt) {
+    if (evt.key === 'Escape') {
+      closePopup(document.querySelector(".popup_opened"));
+}}

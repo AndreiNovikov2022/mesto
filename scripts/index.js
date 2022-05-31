@@ -1,8 +1,4 @@
-const popup = document.querySelector('.popup');
 const popups = document.querySelectorAll('.popup');
-const errorOpenForm = document.querySelectorAll('.form__text');
-const buttonSubmitAddEditFormsActive = document.querySelectorAll('.form__submit');
-const errorSpanWithOpenFormEmpty = document.querySelectorAll('.error');
 const buttonsClosePopup = document.querySelectorAll('.popup__close');
 const formOpenEdit = document.querySelector('.profile__edit-button');
 const formOpenAdd = document.querySelector('.profile__add-button');
@@ -17,7 +13,6 @@ const formNamedInput = document.querySelector('.form__text_content_named');
 const formEdit = document.querySelector("[name='form-edit-button']");
 const formAdd = document.querySelector("[name='form-add-button']");
 const listContainer = document.querySelector(".elements");
-const template = document.querySelector(".template");
 const config = ({
   formSelector: '.form',
   inputSelector: '.form__text',
@@ -31,18 +26,27 @@ const formEditValidator = new FormValidator(config, formEdit);
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import { initialCards } from "./cards.js";
-import { openPopup } from "./utils.js";
 function render() {
-  const cards = [];
   const html = [];
-  initialCards.forEach(initialCard => cards.push(new Card(initialCard.name, initialCard.src, template)));
-  cards.forEach(card => html.push(card.getCard()));
+  initialCards.forEach(initialCard => html.push(getNewCard(initialCard.name, initialCard.src, ".template")));
   listContainer.append(...html);
 }
+formAddValidator.enableValidation();
+formEditValidator.enableValidation();
 
 render();
 
+function getNewCard(name, src, templateSelector)
+{
+  const card = new Card(name, src, templateSelector);
+  return card.getCard();
+}
+
 function closePopup(popup) {
+  if (formAddValidator.isEnabled())
+    formAddValidator.toggleValidation();
+  if (formEditValidator.isEnabled())
+    formEditValidator.toggleValidation();
   document.removeEventListener('keydown', handleCloseKey);
   popup.classList.remove('popup_opened');
 }
@@ -50,61 +54,34 @@ function closePopup(popup) {
 function handleOpenEditForm() {
   formNameInput.value = nameInput.textContent;
   formJobInput.value = jobInput.textContent;
-
-  errorOpenForm.forEach((elem) => {
-    elem.classList.remove('form__text_type_disabled');
-  });
-  errorSpanWithOpenFormEmpty.forEach((elem) => {
-    elem.textContent = '';
-  });
-  buttonSubmitAddEditFormsActive.forEach((elem) => {
-    elem.classList.add('form__submit_type_disabled');
-  });
-
-  formEditValidator.enableValidation();
+  formEditValidator.toggleValidation();
 
   openPopup(formEditModalWindow);
 }
 
 function handleOpenAddForm() {
-  formNamedInput.value = null;
-  formLinkInput.value = null;
-
-  errorOpenForm.forEach((elem) => {
-    elem.classList.remove('form__text_type_disabled');
-  });
-
-  errorSpanWithOpenFormEmpty.forEach((elem) => {
-    elem.textContent = '';
-  });
-
-  buttonSubmitAddEditFormsActive.forEach((elem) => {
-    elem.classList.add('form__submit_type_disabled');
-  });
-
-  formAddValidator.enableValidation();
+  formAdd.reset();
+  formAddValidator.toggleValidation();
 
   openPopup(formAddModalWindow);
 }
 
 function handleFormAddSubmit(evt) {
   evt.preventDefault();
-  const formNamedInput = document.querySelector('.form__text_content_named').value;
-  const formLinkInput = document.querySelector('.form__text_content_link').value;
-  const card = new Card(formNamedInput, formLinkInput, template);
-  const element = card.getCard();
+  const element = getNewCard(formNamedInput.value, formLinkInput.value, ".template");
   listContainer.prepend(element);
-  document.getElementById("button-submit-add").disabled = true;
-  formAddValidator.disableValidation();
-  closePopup(evt.target.closest(".popup_add-button"));
+  closePopup(formAddModalWindow);
 }
 
 function handleFormEditSubmit(evt) {
   evt.preventDefault();
   nameInput.textContent = formNameInput.value;
   jobInput.textContent = formJobInput.value;
-  formEditValidator.disableValidation();
-  closePopup(evt.target.closest(".popup_edit-button"));
+  closePopup(formEditModalWindow);
+}
+function openPopup(popup) {
+  document.addEventListener('keydown', handleCloseKey);
+  popup.classList.add('popup_opened');
 }
 
 formOpenEdit.addEventListener('click', handleOpenEditForm);

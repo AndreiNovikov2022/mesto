@@ -28,15 +28,14 @@ export default class Card
 		popupNamedInput.textContent = this._name;
 		openPopup(imageModalWindow);
 	}
-
 	getCard = () => {
 		this._cardElement = this._template.content.querySelector('.element').cloneNode(true);
-		const name = this._cardElement.querySelector(".element__title");
+		const name = this._cardElement.querySelector('.element__title');
   	name.textContent = this._name;
-		const img = this._cardElement.querySelector(".element__image");
+		const img = this._cardElement.querySelector('.element__image');
   	img.src = this._src;
 		img.alt = this._name;
-		this._likeSetTemplate = this._cardElement.querySelector(".element__like");
+		this._likeSetTemplate = this._cardElement.querySelector('.element__like');
 		this._likeSetTemplate.addEventListener('click', (e) => this._toggleLikeSet(e));
   	img.addEventListener('click', () => this._handleOpenImage());
 		const elementTemplateDelete = this._cardElement.querySelector('.element__delete-button');

@@ -26,14 +26,15 @@ const formEditValidator = new FormValidator(config, formEdit);
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import { initialCards } from "./cards.js";
+
 function render() {
   const html = [];
   initialCards.forEach(initialCard => html.push(getNewCard(initialCard.name, initialCard.src, ".template")));
   listContainer.append(...html);
 }
+
 formAddValidator.enableValidation();
 formEditValidator.enableValidation();
-
 render();
 
 function getNewCard(name, src, templateSelector)
@@ -43,10 +44,6 @@ function getNewCard(name, src, templateSelector)
 }
 
 function closePopup(popup) {
-  if (formAddValidator.isEnabled())
-    formAddValidator.toggleValidation();
-  if (formEditValidator.isEnabled())
-    formEditValidator.toggleValidation();
   document.removeEventListener('keydown', handleCloseKey);
   popup.classList.remove('popup_opened');
 }
@@ -54,21 +51,22 @@ function closePopup(popup) {
 function handleOpenEditForm() {
   formNameInput.value = nameInput.textContent;
   formJobInput.value = jobInput.textContent;
-  formEditValidator.toggleValidation();
-
+  formEditValidator.clearFormInputs();
+  formEditValidator._toggleButton(); 
   openPopup(formEditModalWindow);
 }
 
 function handleOpenAddForm() {
   formAdd.reset();
-  formAddValidator.toggleValidation();
-
+  formAddValidator.clearFormInputs();
   openPopup(formAddModalWindow);
 }
 
 function handleFormAddSubmit(evt) {
   evt.preventDefault();
   const element = getNewCard(formNamedInput.value, formLinkInput.value, ".template");
+  formAdd.reset();
+  formAddValidator._toggleButton();
   listContainer.prepend(element);
   closePopup(formAddModalWindow);
 }
@@ -79,6 +77,7 @@ function handleFormEditSubmit(evt) {
   jobInput.textContent = formJobInput.value;
   closePopup(formEditModalWindow);
 }
+
 function openPopup(popup) {
   document.addEventListener('keydown', handleCloseKey);
   popup.classList.add('popup_opened');

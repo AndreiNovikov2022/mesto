@@ -52,7 +52,7 @@ function handleOpenEditForm() {
   formNameInput.value = nameInput.textContent;
   formJobInput.value = jobInput.textContent;
   formEditValidator.clearFormInputs();
-  formEditValidator._toggleButton(); 
+  formEditValidator.toggleButton(); 
   openPopup(formEditModalWindow);
 }
 
@@ -66,7 +66,7 @@ function handleFormAddSubmit(evt) {
   evt.preventDefault();
   const element = getNewCard(formNamedInput.value, formLinkInput.value, ".template");
   formAdd.reset();
-  formAddValidator._toggleButton();
+  formAddValidator.toggleButton();
   listContainer.prepend(element);
   closePopup(formAddModalWindow);
 }

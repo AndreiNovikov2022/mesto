@@ -13,10 +13,10 @@ export default class FormValidator {
     this._buttonElement = this._form.querySelector(this._config.submitButtonSelector);
     this._formElements.forEach((element) => 
       element.addEventListener('input', this._handleFormInput));
-    this._toggleButton();
+    this.toggleButton();
   }
 
-  _toggleButton = () => {
+  toggleButton = () => {
     this._buttonElement.disabled = !this._form.checkValidity();
     this._buttonElement.classList.toggle(this._config.inactiveButtonClass, !this._form.checkValidity());
   }
@@ -32,7 +32,7 @@ export default class FormValidator {
       errorNode.textContent = input.validationMessage;
       input.classList.add(this._config.inputErrorClass);
     }
-    this._toggleButton(event);
+    this.toggleButton(event);
   }
  
   clearFormInputs()

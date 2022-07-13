@@ -13,20 +13,13 @@ export default class Card {
     this._cardElement = null;
   };
   
-  getCard = () => {
-    this._cardElement = this._template.content
-      .querySelector(".element")
-      .cloneNode(true);
-    const name = this._cardElement.querySelector(".element__title");
-    name.textContent = this._name;
+  _setEventListeners() {
     const img = this._cardElement.querySelector(".element__image");
     img.src = this._src;
     img.alt = this._name;
-    this._likeSetTemplate = this._cardElement.querySelector(".element__like");
-    this._likeSetTemplate.addEventListener("click", (e) =>
+      this._likeSetTemplate.addEventListener("click", (e) =>
       this._toggleLikeSet(e)
     );
-   
     img.addEventListener("click", () => this._handleCardClick());
     const elementTemplateDelete = this._cardElement.querySelector(
       ".element__delete-button"
@@ -34,6 +27,16 @@ export default class Card {
     elementTemplateDelete.addEventListener("click", (e) =>
       this._handleRemoveElement(e)
     );
+  };
+  
+  getCard = () => {
+    this._cardElement = this._template.content
+      .querySelector(".element")
+      .cloneNode(true);
+    const name = this._cardElement.querySelector(".element__title");
+    name.textContent = this._name;
+    this._likeSetTemplate = this._cardElement.querySelector(".element__like");
+    this._setEventListeners();
     return this._cardElement;
   };
 }

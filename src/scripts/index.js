@@ -70,17 +70,18 @@ function handleOpenAddForm() {
 
 function handleFormAddSubmit(evt) {
   evt.preventDefault();
-  const card = { name: formNamedInput.value, src: formLinkInput.value };
-  const element = getNewCard(card, ".template", () => viewImagePopup.open(card.name, card.src));
+  const formValues = addImagePopup.getInputValues();
+  const card = { name: formValues["content-named"], src: formValues["content-link"] };
+  const element = getNewCard(card, ".template", () => viewImagePopup.open(card.name, card.src)); 
   formAdd.reset();
   formAddValidator.toggleButton();
   cardsList.addItem(element);
   addImagePopup.close();
 }
-
 function handleFormEditSubmit(evt) {
   evt.preventDefault();
-  userInfo.setUserInfo(formNameInput.value, formJobInput.value);
+  const formValues = editProfilePopup.getInputValues();
+  userInfo.setUserInfo(formValues["content-name"], formValues["content-job"]);
   editProfilePopup.close();
 }
 

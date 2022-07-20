@@ -47,13 +47,12 @@
           <img src="./images/profile/profile-image.png" alt="" class="element__image">
           <button type="button" name="delete-button" aria-label="Удалить карточку" class="element__delete-button element__delete-button_type_disabled" disabled></button>
         </div>
-        <div class="element__name">
+        <div class="element__name"></div>
           <h2 class="element__title"></h2>
           <div class="element__group">
-            <button type="button" name="like_active" aria-label="Поставить лайк" class="element__like">
-            </button>
-          <span class="element__count">0</span>
-        </div>
+            <button type="button" name="like_active" aria-label="Поставить лайк" class="element__like"></button>
+            <span class="element__count">0</span>
+          </div>
       </li>
     </template>
     <div class="popup popup_profile-image">
@@ -63,7 +62,7 @@
         <form class="form" name="form-edit-image" novalidate>
           <div class="form__fields">
             <input type="url" id="image-input" required name="content-image" placeholder="Ссылка на картинку" class="form__text form__text_content_image">
-            <span class="error" id="image-input-error" ></span>
+            <span class="error" id="image-input-error"></span>
             <button type="submit" class="form__submit form__submit_profile-image"></button>
           </div>
         </form>

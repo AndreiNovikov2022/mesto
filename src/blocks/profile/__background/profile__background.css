@@ -1,0 +1,11 @@
+.profile__background {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.profile__background:hover .profile__overlay {
+    opacity: 0.8;
+}

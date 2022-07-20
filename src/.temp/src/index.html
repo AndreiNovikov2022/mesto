@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="html, css">
+  <base href="./">
+  <!--<link rel="stylesheet" type="text/css" href="./pages/index.css">-->
+  <title>Mesto Russia</title>
+</head>
+
+<body class="root">
+  <div class="page">
+    <header class="header">
+      <img src="./images/header/header-logo.svg" alt="Логотип" class="header__logo">
+    </header>
+    <main>
+      <section class="profile">
+        <img src="./images/profile/profile-image.png" alt="Фотография путешественника" class="profile__image">
+        <div class="profile__edit-add">
+          <div class="profile__info">
+            <div class="profile__title">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button type="button" name="edit-button" aria-label="Редактировать профиль" class="profile__edit-button">
+              </button>
+            </div>
+            <p class="profile__about-me">Исследователь океана</p>
+          </div>
+          <button type="button" name="add-button" aria-label="Добавить профиль" class="profile__add-button">
+          </button>
+        </div>
+      </section>
+      <ul class="elements">
+      </ul>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+    </footer>
+    <template class="template">
+      <li class="element">
+        <div class="element__item">
+          <img src="./images/profile/profile-image.png" alt="" class="element__image">
+          <button type="button" name="delete-button" aria-label="Удалить карточку" class="element__delete-button"></button>
+        </div>
+        <div class="element__name">
+          <h2 class="element__title"></h2>
+          <button type="button" name="like_active" aria-label="Поставить лайк" class="element__like">
+          </button>
+        </div>
+      </li>
+    </template>
+    <div class="popup popup_edit-button">
+      <div class="popup__container">
+        <button class="popup__close" type="button"></button>
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <form class="form" name="form-edit-button" novalidate>
+          <div class="form__fields">
+            <input type="text" id="name-input" required minlength="2" maxlength="40" name="content-name" placeholder="Введите имя" class="form__text form__text_content_name">
+            <span class="error" id="name-input-error"></span>
+            <input type="text" id="job-input" required minlength="4" maxlength="400" name="content-job" placeholder="Укажите профессию" class="form__text form__text_content_job">
+            <span class="error" id="job-input-error"></span>
+          </div>
+          <button id="button-submit-edit" type="submit" class="form__submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_add-button">
+      <div class="popup__container">
+        <button class="popup__close" type="button"></button>
+        <h3 class="popup__title">Новое место</h3>
+        <form class="form" name="form-add-button" novalidate>
+          <div class="form__fields">
+            <input type="text" id="named-input" required minlength="2" maxlength="30" name="content-named" placeholder="Название" class="form__text form__text_content_named">
+            <span class="error" id="named-input-error"></span>
+            <input type="url" id="link-input" required name="content-link" placeholder="Ссылка на картинку" class="form__text form__text_content_link">
+            <span class="error" id="link-input-error"></span>
+          </div>
+          <button id="button-submit-add" type="submit" class="form__submit">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_advent-image">
+      <div class="popup__content">
+        <img src="#" alt="" class="popup__image">
+        <button class="popup__close" type="button"></button>
+        <h3 class="popup__header"></h3>
+      </div>
+    </div>
+  </div>
+  <!--<script src="scripts/index.js" type="module"></script>-->
+</body>
+
+</html>

@@ -1,8 +1,5 @@
 export default class FormValidator {
-  _config;
-  _form;
-  _formElements;
-  _buttonElement;
+
   constructor (config, form) {
     this._config = config;
     this._form = form;
@@ -24,6 +21,7 @@ export default class FormValidator {
   _handleFormInput = (event) => {
     const input = event.target;
     const errorNode = document.querySelector(`#${input.id}-error`);
+
     if (input.validity.valid) {
       errorNode.textContent = '';
       input.classList.remove(this._config.inputErrorClass);
@@ -32,11 +30,11 @@ export default class FormValidator {
       errorNode.textContent = input.validationMessage;
       input.classList.add(this._config.inputErrorClass);
     }
+
     this.toggleButton(event);
   }
  
-  clearFormInputs()
-  {
+  clearFormInputs() {
     this._formElements.forEach(formElement => formElement.classList.remove(this._config.inputErrorClass));
     this._form.querySelectorAll(this._config.errorClass).forEach(errorForm => errorForm.textContent = '');
   }

@@ -1,0 +1,4 @@
+.element__delete-button_type_disabled {
+    opacity: 0.0 !important;
+    position: absolute;
+}

@@ -16,15 +16,20 @@
     </header>
     <main>
       <section class="profile">
-        <img src="./images/profile/profile-image.png" alt="Фотография путешественника" class="profile__image">
+        <div class="profile__background">
+          <img src="https://absolutnoweb.eu/img/cms/universal.png" alt="Аватар пользователя" class="profile__image">
+          <div class="profile__overlay">
+            <button type="button" class="profile__image-button"></button>
+          </div>
+        </div>
         <div class="profile__edit-add">
           <div class="profile__info">
             <div class="profile__title">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <h1 class="profile__name"></h1>
               <button type="button" name="edit-button" aria-label="Редактировать профиль" class="profile__edit-button">
               </button>
             </div>
-            <p class="profile__about-me">Исследователь океана</p>
+            <p class="profile__about-me"></p>
           </div>
           <button type="button" name="add-button" aria-label="Добавить профиль" class="profile__add-button">
           </button>
@@ -40,15 +45,30 @@
       <li class="element">
         <div class="element__item">
           <img src="./images/profile/profile-image.png" alt="" class="element__image">
-          <button type="button" name="delete-button" aria-label="Удалить карточку" class="element__delete-button"></button>
+          <button type="button" name="delete-button" aria-label="Удалить карточку" class="element__delete-button element__delete-button_type_disabled" disabled></button>
         </div>
         <div class="element__name">
           <h2 class="element__title"></h2>
-          <button type="button" name="like_active" aria-label="Поставить лайк" class="element__like">
-          </button>
+          <div class="element__group">
+            <button type="button" name="like_active" aria-label="Поставить лайк" class="element__like">
+            </button>
+          <span class="element__count">0</span>
         </div>
       </li>
     </template>
+    <div class="popup popup_profile-image">
+      <div class="popup__container popup__container_profile-image">
+        <button class="popup__close" type="button"></button>
+        <h3 class="popup__title">Обновить аватар</h3>
+        <form class="form" name="form-edit-image" novalidate>
+          <div class="form__fields">
+            <input type="url" id="image-input" required name="content-image" placeholder="Ссылка на картинку" class="form__text form__text_content_image">
+            <span class="error" id="image-input-error" ></span>
+            <button type="submit" class="form__submit form__submit_profile-image"></button>
+          </div>
+        </form>
+      </div>
+    </div>
     <div class="popup popup_edit-button">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
@@ -60,7 +80,7 @@
             <input type="text" id="job-input" required minlength="4" maxlength="400" name="content-job" placeholder="Укажите профессию" class="form__text form__text_content_job">
             <span class="error" id="job-input-error"></span>
           </div>
-          <button id="button-submit-edit" type="submit" class="form__submit">Сохранить</button>
+          <button id="button-submit-edit" type="submit" class="form__submit"></button>
         </form>
       </div>
     </div>
@@ -75,7 +95,16 @@
             <input type="url" id="link-input" required name="content-link" placeholder="Ссылка на картинку" class="form__text form__text_content_link">
             <span class="error" id="link-input-error"></span>
           </div>
-          <button id="button-submit-add" type="submit" class="form__submit">Создать</button>
+          <button id="button-submit-add" type="submit" class="form__submit"></button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_delete-card">
+      <div class="popup__container popup__container_delete-card">
+        <button class="popup__close" type="button"></button>
+        <h3 class="popup__title">Вы уверены?</h3>
+        <form class="form" name="form-delete-card" novalidate>
+            <button type="submit" class="form__submit form__submit_delete-card">Да</button>
         </form>
       </div>
     </div>

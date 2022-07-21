@@ -35,98 +35,122 @@ const addImagePopup = new PopupWithForm('.popup_add-button',
 const viewImagePopup = new PopupWithImage('.popup_advent-image');
 viewImagePopup.setEventListeners();
 
-const userInfo = new UserInfo({
-  content_name: '.profile__name',
-  content_job: '.profile__about-me',
-  content_image: '.profile__image'
-}, () => api.getUserInfo().catch(err => console.log(err)));
+function renderCard(card) {
+  return cardsList.addItem(createCard(card, ".template", () =>
+    viewImagePopup.open(card.name, card.link)))
+}
+
+function apiRenderCards() {
+  api.getInitialCards().then(res => cardsList.renderItems(res)).catch(err => console.log(err));
+}
 
 const cardsList = new Section({
   renderer: (card) => 
-    cardsList.addItem(createCard(card, ".template", () =>
-      viewImagePopup.open(card.name, card.link))),
+    renderCard(card),
 }, '.elements');
 
 formAddValidator.enableValidation();
 formEditValidator.enableValidation();
 formEditImageValidator.enableValidation();
 
-api.getUserInfo().then(res => {
-  formNameInput.value = res.name;
-  formJobInput.value = res.about;
-}).catch(err => console.log(err));
+const userInfo = new UserInfo({
+  content_name: '.profile__name',
+  content_job: '.profile__about-me',
+  content_image: '.profile__image'
+});
 
-api.getInitialCards().then(res => cardsList.renderItems(res)).catch(err => console.log(err))
+api.getUserInfo().then(res => userInfo.setUserTextContent(res)).then(() => apiRenderCards());
 
 function createCard(currentCard, templateSelector, handleCardClick) {
-  const card = new Card(currentCard, templateSelector, () => userInfo.getUserId(),
-    handleCardClick, (x) => handleOpenDeleteCardForm(x, currentCard._id), (toggle) => toggle ?
-    (api.putLike(currentCard._id)) : (api.removeLike(currentCard._id)));
+  const card = new Card(currentCard, templateSelector, userInfo.getUserId(),
+    handleCardClick, (yetAnotherCard) => handleOpenDeleteCardForm(yetAnotherCard, currentCard._id),
+     (toggle) => toggle ? (api.putLike(currentCard._id)) :
+     (api.removeLike(currentCard._id)));
   return card.getCard();
 }
 
 function handleOpenEditImageForm() {
+  editImageProfilePopup.changeButtonText("Сохранить");
   formImageInput.value = userInfo.getUserInfo().content_image;
   formEditImageValidator.clearFormInputs();
   formEditImageValidator.toggleButton();
-  document.querySelector('.form__submit').innerText = "Сохранить";
   editImageProfilePopup.open();
 }
 
 function handleOpenEditForm() {
+  editProfilePopup.changeButtonText("Сохранить");
   formNameInput.value = userInfo.getUserInfo().content_name;
   formJobInput.value = userInfo.getUserInfo().content_job;
   formEditValidator.clearFormInputs();
-  formEditValidator.toggleButton();
-  editProfilePopup.changeButtonText("Сохранить");
+  formEditValidator.toggleButton(); 
   editProfilePopup.open();
 }
 
 function handleOpenAddForm() {
+  addImagePopup.changeButtonText("Создать");
   formAdd.reset();
   formAddValidator.clearFormInputs();
-  addImagePopup.changeButtonText("Создать");
+  formAddValidator.toggleButton();
   addImagePopup.open();
 }
 
-function handleOpenDeleteCardForm(handleRemoveElement, cardId) {
-  cardDeletePopup.setSubmitEventListener(handleRemoveElement,
-    () => api.deleteCard(cardId).catch(err => console.log(err)));
-  cardDeletePopup.changeButtonText("Сохранить");
+function handleRemoveElement(event, handleRemoveCardElement, cardId) {
+
+  event.preventDefault();
+  cardDeletePopup.changeButtonText("Удаление...");
+
+  api.deleteCard(cardId).then(() => {
+    handleRemoveCardElement();
+    cardDeletePopup.removeSubmitEventListener();
+    cardDeletePopup.close();
+  });
+}
+
+function handleOpenDeleteCardForm(handleRemoveCardElement, cardId) {
+
+  cardDeletePopup.changeButtonText("Да");
+
+  cardDeletePopup.setSubmitEventListener((event) =>
+    handleRemoveElement(event, handleRemoveCardElement, cardId));
   cardDeletePopup.open();
 }
 
 function handleFormEditImageSubmit(evt) {
   evt.preventDefault();
-  const formValues = editImageProfilePopup.getInputValues();
-  userInfo.setProfileImage(formValues["content-image"],
-   (imageInput) => api.editProfileImage(imageInput));
   formEditImageValidator.toggleButton();
-  editImageProfilePopup.close();
-  setTimeout(() => editImageProfilePopup.changeButtonText("Сохранение..."), 10);
+  editImageProfilePopup.changeButtonText("Сохранение...");
+  const formValues = editImageProfilePopup.getInputValues();
+
+  const imageInput = formValues["content-image"];
+
+  api.editProfileImage(imageInput).then(() => userInfo.setProfileImage(imageInput))
+    .then(() => editImageProfilePopup.close());
 }
 
 function handleFormAddSubmit(evt) {
   evt.preventDefault();
+  addImagePopup.changeButtonText("Создание...");
   const formValues = addImagePopup.getInputValues();
+
   const card = { name: formValues["content-named"],
    link: formValues["content-link"] };
+  
   api.addNewCard(card.name, card.link).then(res => cardsList.addItem(createCard(res, ".template",
-   () => viewImagePopup.open(card.name, card.link)))).catch(err => console.log(err));
-  formAdd.reset();
-  formAddValidator.toggleButton();
-  addImagePopup.close();
-  setTimeout(() => addImagePopup.changeButtonText("Сохранение..."), 10);
+   () => viewImagePopup.open(card.name, card.link)))).then(() => {
+    formAdd.reset();
+    formAddValidator.toggleButton();
+    addImagePopup.close();
+  }).catch(err => console.log(err));
 }
 
 function handleFormEditSubmit(evt) {
   evt.preventDefault();
+  editProfilePopup.changeButtonText("Сохранение...");
   const formValues = editProfilePopup.getInputValues();
-  userInfo.setUserInfo(formValues["content-name"],
-    formValues["content-job"], 
-    (name, info) => api.editUserInfo(name, info));
-  editProfilePopup.close();
-  setTimeout(() => editProfilePopup.changeButtonText("Сохранение..."), 10);
+  
+  api.editUserInfo(formValues["content-name"], formValues["content-job"])
+    .then(() => userInfo.setUserInfo(formValues["content-name"], formValues["content-job"]))
+    .then(() => editProfilePopup.close());
 }
 
 formOpenEdit.addEventListener('click', handleOpenEditForm);

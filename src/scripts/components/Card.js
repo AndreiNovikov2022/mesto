@@ -1,28 +1,28 @@
 export default class Card {
 
-  constructor(currentCard, templateSelector, getOwnerId, handleCardClick, handleOpenConfirmationPopup, apiPutLike) {
+  constructor(currentCard, templateSelector, ownerId, handleCardClick, handleOpenConfirmationPopup, apiPutLike) {
     this._card = currentCard;
     this._toggle = false;
     this._template = document.querySelector(templateSelector);
     this._handleCardClick = handleCardClick;
     this._handleOpenConfirmationPopup = handleOpenConfirmationPopup;
-    this._getOwnerId = getOwnerId;
+    this._ownerId = ownerId;
     this._apiPutLike = apiPutLike;
   }
 
   setLikesCount(likesCount) {
-    const elementGroup = this._cardElement.querySelector('.element__group');
-    const likes = elementGroup.querySelector('.element__count');
+    
+    const likes = this._elementGroup.querySelector('.element__count');
+
     likes.textContent = likesCount;
-    setTimeout(() => {
-      const id = this._getOwnerId();
-      this._card.likes.forEach(x => {
-        if (x._id === id) {
-          this._toggle = true;
-          this._likeSetTemplate.classList.toggle("element__like_active");
-        }
-      });
-    }, 100);
+
+    this._card.likes.forEach(card => {
+      if (card._id === this._ownerId) {
+        this._toggle = true;
+        this._likeSetTemplate.classList.toggle("element__like_active");
+      }
+    });
+
   }
 
   enableButton() {
@@ -35,10 +35,10 @@ export default class Card {
   _toggleLikeSet() {
     this._toggle = !this._toggle;
     this._likeSetTemplate.classList.toggle("element__like_active");
-    const elementGroup = this._cardElement.querySelector('.element__group');
-    const likes = elementGroup.querySelector('.element__count');
+
+    const likes = this._elementGroup.querySelector('.element__count');
+    
     this._toggle ? likes.textContent++ : likes.textContent--;
-    this._apiPutLike(this._toggle);
   }
 
   _handleRemoveElement = () => {
@@ -53,15 +53,13 @@ export default class Card {
 
     this.setLikesCount(this._card.likes.length);
 
-    this._likeSetTemplate.addEventListener("click", (e) =>
-      this._toggleLikeSet(e));
+    this._likeSetTemplate.addEventListener("click", () =>
+      this._apiPutLike(!this._toggle).then(() => this._toggleLikeSet()));
 
     img.addEventListener("click", () => this._handleCardClick());
 
-    setTimeout(() => {
-      if (this._card.owner._id === this._getOwnerId())
-        this.enableButton();
-    }, 100);
+    if (this._card.owner._id === this._ownerId)
+      this.enableButton();
 
     const confirmDeleteButton = this._cardElement.querySelector(
       ".element__delete-button");
@@ -74,6 +72,7 @@ export default class Card {
     this._cardElement = this._template.content
       .querySelector(".element")
       .cloneNode(true);
+    this._elementGroup = this._cardElement.querySelector('.element__group');
     const name = this._cardElement.querySelector(".element__title");
     name.textContent = this._card.name;
     this._likeSetTemplate = this._cardElement.querySelector(".element__like");

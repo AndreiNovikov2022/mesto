@@ -1,10 +1,9 @@
 {
   "name": "mesto",
   "version": "1.0.0",
-  "description": "## 1.  Вступление ##",
+  "description": "Вебсайт представляет собой фотогалерею пользователя.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf dist && webpack --mode production",
     "dev": "webpack serve",
     "predeploy": "npm run build",
@@ -14,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/AndreiNovikov2022/mesto.git"
   },
-  "author": "",
+  "author": "Andrei Novikov",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/AndreiNovikov2022/mesto/issues"

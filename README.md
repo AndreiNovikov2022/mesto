@@ -30,4 +30,4 @@
 
 Данный проект можно запустить с помощью основных браузеров: Google Chrome, FireFox, Yandex, Safari, Edge. Для правильного отображения информации на экране на компьютере должны быть установлены следующие шрифты: 'Inter', 'Arial', 'sans-serif'. Можно запускать на мобильных и десктопных устройствах.
 
-https://AndreiNovikov/github.io/work9
+https://andreinovikov2022.github.io/mesto/

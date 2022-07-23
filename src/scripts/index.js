@@ -59,13 +59,14 @@ const userInfo = new UserInfo({
   content_image: '.profile__image'
 });
 
-api.getUserInfo().then(res => userInfo.setUserTextContent(res)).then(() => apiRenderCards());
+api.getUserInfo().then(res => userInfo.setUserTextContent(res)).then(() => apiRenderCards())
+.catch(err => console.log(err));
 
 function createCard(currentCard, templateSelector, handleCardClick) {
   const card = new Card(currentCard, templateSelector, userInfo.getUserId(),
     handleCardClick, (yetAnotherCard) => handleOpenDeleteCardForm(yetAnotherCard, currentCard._id),
-     (toggle) => toggle ? (api.putLike(currentCard._id)) :
-     (api.removeLike(currentCard._id)));
+     (toggle) => toggle ? (api.putLike(currentCard._id).catch(err => console.log(err))) :
+     (api.removeLike(currentCard._id).catch(err => console.log(err))));
   return card.getCard();
 }
 
@@ -103,7 +104,7 @@ function handleRemoveElement(event, handleRemoveCardElement, cardId) {
     handleRemoveCardElement();
     cardDeletePopup.removeSubmitEventListener();
     cardDeletePopup.close();
-  });
+  }).catch(err => console.log(err));
 }
 
 function handleOpenDeleteCardForm(handleRemoveCardElement, cardId) {
@@ -124,7 +125,7 @@ function handleFormEditImageSubmit(evt) {
   const imageInput = formValues["content-image"];
 
   api.editProfileImage(imageInput).then(() => userInfo.setProfileImage(imageInput))
-    .then(() => editImageProfilePopup.close());
+    .then(() => editImageProfilePopup.close()).catch(err => console.log(err));
 }
 
 function handleFormAddSubmit(evt) {
@@ -150,7 +151,8 @@ function handleFormEditSubmit(evt) {
   
   api.editUserInfo(formValues["content-name"], formValues["content-job"])
     .then(() => userInfo.setUserInfo(formValues["content-name"], formValues["content-job"]))
-    .then(() => editProfilePopup.close());
+    .then(() => editProfilePopup.close())
+    .catch(err => console.log(err));
 }
 
 formOpenEdit.addEventListener('click', handleOpenEditForm);
